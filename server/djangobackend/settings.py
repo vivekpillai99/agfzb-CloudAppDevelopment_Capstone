@@ -27,8 +27,11 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost"]
-
+ALLOWED_HOSTS = [
+    "localhost",
+    "vivekdjangoapp.us-south.cf.appdomain.cloud",
+    "vivekdjangoapp.mybluemix.net"
+]
 
 # Application definition
 

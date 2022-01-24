@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dealership Review</title>
+    <title>Contact Us</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -14,14 +14,16 @@
 </head>
 
     <body>
-    <!--Add a nav bar here -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="nav-item nav-link" href="#">Home</a>
-        <a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
-        <a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-    </nav>  
-    <!--Add a dealer table here -->
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="nav-item nav-link" href="{% url 'djangoapp:index' %}">Home</a>
+            <a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+            <a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+        </nav> 
+        <div>
+            You may contact us at the following:
+            <br>Phone number: +1(420)-420-6969
+            <br>Address: 6969 E Arizona Street, New York, New York
+        </div>   
     </body>
 
 </html>
