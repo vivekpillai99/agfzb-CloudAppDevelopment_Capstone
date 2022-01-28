@@ -41,6 +41,40 @@ class CarModel(models.Model):
         return "This is a car of type " + self.name + " with dealerId: " + str(self.dealerId)
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
+class CarDealer:
+    def __init__(self, address, city, full_name, id, lat, long, short_name, st, zip, state):
+        self.address = address
+        self.city = city
+        self.full_name = full_name
+        self.id = id
+        self.lat = lat
+        self.long = long
+        self.short_name = short_name
+        self.st = st
+        self.zip = zip
+        self.state = state
+
+    def __str__(self):
+        return "Dealer name: " + self.full_name
 
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
+class DealerReview:
+    def __init__(self, id, name, dealership, review, purchase, purchase_date, car_make, car_model, car_year):
+        self.id = id
+        self.name = name
+        self.dealership = dealership
+        self.review = review
+        self.purchase = purchase
+        self.purchase_date = purchase_date
+        self.car_make = car_make
+        self.car_model = car_model
+        self.car_year = car_year
+        self.sentiment = None
+    
+    def set_sentiment(self, sentiment):
+        self.sentiment = sentiment
+    
+    def __str__(self):
+        return "This review is from " + self.name + " for dealership: " + self.dealership
+
