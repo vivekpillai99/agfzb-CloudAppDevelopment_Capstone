@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 # from .restapis import related methods
 from .models import CarDealer, CarMake, CarModel
-from .restapis import get_dealers_from_cf, get_request, get_dealer_by_id_from_cf
+from .restapis import get_dealers_from_cf, get_request, get_dealer_by_id_from_cf, post_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -14,7 +14,6 @@ import json
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-
 
 # Create your views here.
 
@@ -105,10 +104,31 @@ def get_dealer_details(request, dealer_id):
         reviews = get_dealer_by_id_from_cf(url, dealer_id)
         review_str = ""
         for review in reviews:
-            review_str += "This review is from " + review.name +"\n"
+            review_str += "This review is from " + review.name + " with the sentiment "+review.sentiment +"\n"
         return HttpResponse(review_str)
 
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
+def add_review(request, dealer_id):
+    if request.user.is_authenticated:
+        review = {}
+        review["name"] = "Jared"
+        review["id"] = 872
+        review["dealership"] = 23
+        review["review"] = "This project is ass!"
+        review["purchase"] = False
+        review["purchase_date"] = "01/26/2022"
+        review["car_make"] = "GTR"
+        review["car_model"] = "Nissan"
+        review["car_year"] = 2021
 
+        json_payload = {}
+        json_payload["review"] = review
+
+        url = 'https://dc634a7a.us-south.apigw.appdomain.cloud/api/review'
+        print(json_payload)
+
+        response = post_request(url, json_payload, dealerId=dealer_id)
+        test = "Status code: " + str(response["body"])
+        return HttpResponse(test)

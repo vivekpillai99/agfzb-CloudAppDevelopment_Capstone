@@ -72,9 +72,6 @@ class DealerReview:
         self.car_year = car_year
         self.sentiment = None
     
-    def set_sentiment(self, sentiment):
-        self.sentiment = sentiment
-    
     def __str__(self):
         return "This review is from " + self.name + " for dealership: " + self.dealership
 
