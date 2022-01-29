@@ -59,7 +59,10 @@ def get_dealer_by_id_from_cf(url, dealerId):
     results = []
     json_result = get_request(url, dealerId=dealerId)
     if json_result:
-        reviews = json_result["docs"]
+        try:
+            reviews = json_result["docs"]
+        except:
+            return []
         for review in reviews:
             review_obj = DealerReview(id = review["id"], name = review["name"], dealership = review["dealership"],
             review = review["review"], purchase = review["purchase"], purchase_date = review["purchase_date"],
