@@ -8,9 +8,45 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
+    <script type="text/javascript">
+        $('.date-own').datepicker({
+            format:'mm/dd/yyyy'
+        });
+    </script>
 </head>
     <body>
+        <div><h2>Add a review about <strong>{{dealer_name}} </strong></h2></div>
     <!--Add review form here -->
+    <form method = "POST" class="col-md-10" action="{% url 'djangoapp:add_review' dealer_id dealer_name%}">
+        <b>Enter the review content: </b>
+        {% csrf_token %}
+        <textarea class="form-control" id="review" name="review" rows="2" required></textarea>
+        <div class="form-group row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="purchase" name="purchase">
+                <label class="form-check-label" for="gridCheck1">
+                    Have you purchased the car from {{dealer_name}}?
+                </label>
+              </div>
+            </div>
+          </div>
+        <div> <b> Enter your car purchase information </b></div>
+        <div class="col-sm-5">
+            <b>Enter the Make: </b>
+            <textarea class="form-control" placeholder="Subaru" id="car_make" name="car_make" rows="1" required></textarea>
+            <b>Enter the Model: </b>
+            <textarea class="form-control" placeholder="Forester" id="car_model" name="car_model" rows="1" required></textarea>
+            <b>Enter the Year: </b>
+            <input type="number" class="form-control" placeholder="2021" id="car_year" name="car_year" rows="1" required></input>
+        </div>
+        <br>
+        <b> Select Your Purchase Date: </b>
+        <input class="date-own form-control" type='text' name="purchase_date" id="purchase_date"></input>
+        <br>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </div>
+    </form>
     </body>
 </html>
